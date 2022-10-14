@@ -1,0 +1,57 @@
+#include<iostream>
+using namespace std;
+int printarr(int arr[],int n)
+{
+	for(int i = 0; i<n;i++)
+	{
+		cout<<arr[i]<<" ";
+	}
+}
+int partition(int arr[],int s,int e)
+{
+	int pivot = arr[s];
+	int i = s-1;
+	int j = e+1;
+
+	  do{
+	 	do{
+	 		i++;
+		 }while(arr[i]<=pivot);
+		 do{
+		 	j--;
+		 }while(arr[j]>pivot);
+		 if(i<j)
+		 {
+		 	int temp = arr[i];
+		 	arr[i] = arr[j];
+		 	arr[j] = temp;
+		 }
+	 	
+	 }while(i<j);
+	
+	 
+	 		int temp = arr[s];
+		 	arr[s] = arr[j];
+		 	arr[j] = temp;
+	        return j;
+	 }
+	 
+   void quicksort(int arr[],int s,int e)
+   {
+   	int pivotindex;
+   	if(s<e)
+   	{
+   		pivotindex = partition(arr,s,e);
+     	quicksort(arr,pivotindex+1,e);
+	   }
+		} 	
+int main()
+{
+  int arr[]={ 2,5,3,89,3,53,3};
+    int length = sizeof(arr)/sizeof(arr[0]);
+    printarr(arr,length);
+    quicksort(arr,0,length-1);
+    printarr(arr,length);
+    return 0;
+
+}
